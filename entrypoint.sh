@@ -10,11 +10,11 @@ cleanup() {
   log "Killing ssh agent."
   ssh-agent -k
   log "Removing workspace archive."
-  rm -f /tmp/workspace.tar.bz2
+  rm -f /tmp/workspace.tar
 }
 trap cleanup EXIT
 
-log "Packing workspace into archive to transfer onto remote machine."
+log "Packing workspace into archive to transfer onto remote machine. 2"
 tar cjvf /tmp/workspace.tar --exclude .git --exclude vendor .
 
 log "Launching ssh agent."
