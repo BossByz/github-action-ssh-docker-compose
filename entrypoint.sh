@@ -15,7 +15,7 @@ cleanup() {
 trap cleanup EXIT
 
 log "Packing workspace into archive to transfer onto remote machine."
-tar cjvf /tmp/workspace.tar.bz2 --exclude .git --exclude vendor .
+tar cjvf /tmp/workspace.tar --exclude .git --exclude vendor .
 
 log "Launching ssh agent."
 eval `ssh-agent -s`
@@ -34,4 +34,4 @@ echo ">> [local] Connecting to remote host."
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
   "$SSH_USER@$SSH_HOST" -p "$SSH_PORT" \
   "$remote_command" \
-  < /tmp/workspace.tar.bz2
+  < /tmp/workspace.tar
